@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PerspectiveCub</title>
+    <link rel="stylesheet" href="{% static 'PerspectiveCub/layout_styles.css' %}"> 
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     {% block head %}
+     {% endblock %}
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>PerspectiveCub</h1>
+      {% if user.is_authentticated %}
+       <a href="{% url 'logout' %}">Log out</a>
+    
+      {% else %}
+        <a href="{% url 'signup' %}">Sign up</a>
+        <a href="{% url 'login' %}">Log in</a>
+      {% endif %}
+    </div>
+    <content>
+      {% block body %}
+      {% endblock %}
+    </content>
+  </body>
+</html>

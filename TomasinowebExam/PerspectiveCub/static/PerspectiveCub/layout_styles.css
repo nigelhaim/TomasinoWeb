@@ -1,0 +1,13 @@
+html{
+  font-family: consolas;
+}
+.header{
+  display:flex;
+}
+.header a{
+  padding: 25px;
+  padding-top: 10px;
+  font-size: 24px;
+  font-style:none;
+  color: gray;
+}
