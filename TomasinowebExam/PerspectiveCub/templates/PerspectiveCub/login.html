@@ -1,8 +1,19 @@
-  
 {% extends 'PerspectiveCub/layout.html' %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'PerspectiveCub/login_styles.css' %}">
+{% endblock %}
 {% block body %}
 <h1>Login</h1>
 <form action="" method="POST">
-  
+  {% csrf_token %}
+  <div class="form-input">
+    <input class="input-control" autofocus type="text" name="username" placeholder="username">
+  </div>
+  <div class="form-input">
+    <input class="input-control" autofocus type="text" name="password" placeholder="password">
+  </div>
+    <input id="submit-button" class="btn btn-primary" type="submit" value="Log in">
 </form>
+<h5>{{ message }}</h5>
 {% endblock %}

@@ -1,4 +1,30 @@
 {% extends 'PerspectiveCub/layout.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'PerspectiveCub/index_styles.css' %}"> 
+{% endblock %}
 {% block body %}
-<h1>Index</h1>
+{% if user.is_authenticated %}
+<h3>Welcome {{ username }}</h3>
+<div id="create_post">
+  <form action="post" method="POST">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Title"><br>
+    <input type="text" name="content" placeholder="Content"><br>
+    <input type="submit" class="btn btn-primary" value="Post">
+  </form>
+</div>
+<button id="create_post_button">Create Post</button>
+
+{% else %}
+  <center>
+    <h1>Welcome to PerspectiveCub<h1>
+    <h3>The blog for Thomasians</h3>
+    <h5>Please 
+       <a href="{% url 'login' %}">Log in</a>
+       or
+       <a href="{% url 'signup' %}">Sign up</a>
+    </h5>
+  </center>
+{% endif %}
 {% endblock %}

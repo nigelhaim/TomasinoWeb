@@ -4,9 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db import IntegrityError
 from .models import User, Profile, posts
+from django.utils.timezone import datetime
 # Create your views here.
 def index(request):
-    return render(request, "PerspectiveCub/index.html")
+    return render(request, "PerspectiveCub/index.html", {
+        })
 #    return HttpResponse("Hello world")
 def login_view(request):
     if request.method == "POST":
@@ -18,7 +20,7 @@ def login_view(request):
             login(request,user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "network/login.html", {
+            return render(request, "PerspectiveCub/login.html", {
                 "message" : "Invalid log in credentials"
                 })
     else:
@@ -53,3 +55,15 @@ def signup_view(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "PerspectiveCub/signup.html")
+
+def c_post(request):
+    if request.method == "POST":
+        user = Profile.objects.get(user=request.user)
+        title = request.POST["title"]
+        content = request.POST["content"]
+        date_time = datetime.now()
+
+        post = posts(profile = user, title = title, content = content, timestamp = date_time)
+        post.save()
+        return HttpResponseRedirect(reverse("index"))
+    return render(request, "PerspectiveCub/index.html")
