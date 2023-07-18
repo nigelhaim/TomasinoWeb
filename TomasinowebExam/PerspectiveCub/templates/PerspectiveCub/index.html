@@ -9,13 +9,14 @@
 <div id="create_post">
   <form action="post" method="POST">
     {% csrf_token %}
-    <input type="text" name="title" placeholder="Title"><br>
-    <input type="text" name="content" placeholder="Content"><br>
-    <input type="submit" class="btn btn-primary" value="Post">
+    <input type="text" name="title" placeholder="Title" class="title-input"><br>
+    <textarea type="text" name="content" placeholder="Content" class="content-input"></textarea><br>
+    <input id="post-button" type="submit" class="btn btn-primary" value="Post">
   </form>
 </div>
 <button id="create_post_button">Create Post</button>
-
+<div id="show-posts">
+</div>
 {% else %}
   <center>
     <h1>Welcome to PerspectiveCub<h1>

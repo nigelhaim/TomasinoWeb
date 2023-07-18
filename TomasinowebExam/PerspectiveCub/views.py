@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db import IntegrityError
 from .models import User, Profile, posts
 from django.utils.timezone import datetime
+from django.http import JsonResponse
 # Create your views here.
 def index(request):
     return render(request, "PerspectiveCub/index.html", {
@@ -67,3 +68,7 @@ def c_post(request):
         post.save()
         return HttpResponseRedirect(reverse("index"))
     return render(request, "PerspectiveCub/index.html")
+def get_posts(request):
+    nposts = posts.objects.all()
+    nposts = nposts.order_by("-timestamp").all()
+    return JsonResponse([post.serialize() for post in nposts], safe=False,)
