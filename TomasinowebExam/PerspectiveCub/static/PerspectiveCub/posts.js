@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("Working");
+  console.log("Working"); 
 
   var form =  document.getElementById('create_post');
   form.style.display = 'none';
@@ -23,42 +23,41 @@ function display_post() {
   .then(response => response.json())
   .then(posts => {
     console.log(posts);
-    posts.forEach((post) => {
+  posts.forEach((post) => {
       console.log();
-      var profile_link = post.profileid;
+      var profile_link = (post.post_id);
       var username = document.createTextNode(post.profile);
       var title = document.createTextNode(post.title);
       var content = document.createTextNode(post.content);
       var timestamp = document.createTextNode(post.timestamp);
 
       const a_post = document.createElement('div');
-      const profile = document.createElement('a');
+      const view_post = document.createElement('a');
       const post_title = document.createElement('h2');
       const name = document.createElement('h3');
       const date_time = document.createElement('p');
       const post_content = document.createElement('p');
 
       a_post.setAttribute('id', 'a_post');
-      profile.setAttribute('id', 'profile');
+      view_post.setAttribute('id', 'view_post');
       post_title.setAttribute('id', 'title');
       name.setAttribute('id', 'name');
       date_time.setAttribute('id', 'date_time');
       post_content.setAttribute('id', 'post_content');
       
       name.appendChild(username);
-      post_title.appendChild(title);
-      profile.appendChild(name);
+      view_post.appendChild(a_post);
       date_time.appendChild(timestamp);
       post_content.appendChild(content);
-      profile.appendChild(name);
-      profile.href = profile_link;
+      view_post.href = profile_link;
 
       a_post.appendChild(post_title);
       a_post.appendChild(name);
       a_post.appendChild(date_time);
       a_post.appendChild(post_content);
 
-      document.querySelector('#show-posts').append(a_post);
+      post_title.appendChild(title);
+      document.querySelector('#show-posts').append(view_post);
     })
   })
 }

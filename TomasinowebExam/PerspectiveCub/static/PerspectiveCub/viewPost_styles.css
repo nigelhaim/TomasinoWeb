@@ -1,0 +1,14 @@
+body{ 
+}
+.full_post{
+  width:80%;
+  position:relative;
+  left:5%;
+}
+.black_button{
+  background-color:black;
+  color:white;
+  border-radius:5px;
+  position:relative;
+}
+

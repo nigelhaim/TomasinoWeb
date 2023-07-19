@@ -1,0 +1,23 @@
+{% extends 'PerspectiveCub/layout.html' %}
+{% load static %}  
+{% block head %}
+<link rel='stylesheet' href="{% static 'PerspectiveCub/viewPost_styles.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+{% endblock %}
+{% block body %}
+<div class="full_post" id="full_post">
+  <form action="" method="POST">
+  <h1 class="title">{{ title }}</h1>
+  <h3 class="author">Author: {{ author }} </h3>
+  <h5 class="timestamp">Posted on: {{ timestamp }}</h5>
+<button class="black_button" id="dl_button">Download article</button>
+  <br>
+  <br>
+  </form>
+  <p class="content">{{ content }}</p>
+{% if user.username == author %}
+<button class="black_button">Edit post</button>
+{% endif %}
+</div>
+    <script src="{% static 'PerspectiveCub/view_post.js' %}" ></script>
+{% endblock %}

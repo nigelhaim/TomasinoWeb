@@ -5,10 +5,11 @@
 {% endblock %}
 {% block body %}
 {% if user.is_authenticated %}
-<h3>Welcome {{ username }}</h3>
+<h3>Welcome {{ user }}</h3>
 <div id="create_post">
   <form action="post" method="POST">
     {% csrf_token %}
+    <h2>Create post</h2>
     <input type="text" name="title" placeholder="Title" class="title-input"><br>
     <textarea type="text" name="content" placeholder="Content" class="content-input"></textarea><br>
     <input id="post-button" type="submit" class="btn btn-primary" value="Post">

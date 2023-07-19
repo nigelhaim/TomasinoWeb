@@ -72,3 +72,14 @@ def get_posts(request):
     nposts = posts.objects.all()
     nposts = nposts.order_by("-timestamp").all()
     return JsonResponse([post.serialize() for post in nposts], safe=False,)
+
+def view_post(request, post_id):
+    v_post = posts.objects.get(pk=post_id) 
+    author = v_post.profile.user
+    return render(request, "PerspectiveCub/view_post.html",{
+        "post" : v_post,
+        "title" : v_post.title,
+        "content" : v_post.content,
+        "timestamp" : v_post.timestamp.strftime("%b %d %Y, %I:%M %p"),
+        "author" : author.username
+        })
