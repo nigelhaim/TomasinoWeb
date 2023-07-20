@@ -19,6 +19,7 @@
   <br>
   <input type="submit" value="Submit" id="edit_submit">
   </form>
+</div>
 {% if user.username == author %}
 <div class="author_buttons">
   <button class="black_button" id="edit_post_button">Edit Post</button>
@@ -35,6 +36,5 @@
 {% endif %}
 <br>
 <button class="black_button" id="dl_button">Download article</button>
-</div>
     <script src="{% static 'PerspectiveCub/view_post.js' %}" ></script>
 {% endblock %}
