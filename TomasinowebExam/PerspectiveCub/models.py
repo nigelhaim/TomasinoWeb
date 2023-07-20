@@ -28,3 +28,7 @@ class posts(models.Model):
             "content" : self.content,
             "timestamp" : self.timestamp.strftime("%b %d %Y, %I:%M %p"),
         }
+
+class favorites(models.Model):
+    saver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="saver", default="")
+    post = models.ForeignKey(posts, on_delete=models.CASCADE, related_name="saved_post", default="")

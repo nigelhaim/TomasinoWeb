@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect 
 from django.urls import reverse
 from django.db import IntegrityError
-from .models import User, Profile, posts
+from .models import User, Profile, posts, favorites
 from django.utils.timezone import datetime
 from django.http import JsonResponse
 # Create your views here.
@@ -96,4 +96,27 @@ def edit_post(request, post_id):
             post.content = content
             post.save()
             return HttpResponseRedirect(reverse('view_post', args=(post.id,))) 
-        
+
+def delete(request, post_id):
+    if request.method == "POST":
+        post = posts.objects.filter(pk=post_id).first()
+        if post.profile.user != request.user:
+            return HttpsResponse(status-401)
+        else:
+            post.delete()
+        return HttpResponseRedirect(reverse('index'))
+
+def add_favorites(request, post_id):
+    saver = request.user
+    post = posts.objects.filter(pk=post_id).first()
+    favorite = favorites(saver = saver, post = post)
+    dup = favorites.objects.filter(saver = saver, post = post).first()
+    if dup == None:
+        favorite.save()
+    return HttpResponseRedirect(reverse('view_post', args=(post.id,))) 
+
+def show_favorites(request):
+    post = favorites.objects.filter(saver = request.user)
+    return render(request, "PerspectiveCub/favorites.html", {
+        "posts" : post
+        })

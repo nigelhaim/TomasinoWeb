@@ -12,18 +12,29 @@
   <input name="edit_title" id="edit_form_title" type="text" value="{{ title }}">
   <h3 class="author">Author: {{ author }} </h3>
   <h5 class="timestamp">Posted on: {{ timestamp }}</h5>
-<button class="black_button" id="dl_button">Download article</button>
   <br>
   <br>
   <div class="content" id="content">{{ content|linebreaks }}</div>
   <textarea name="edit_content" id="edit_form_content">{{ content }}</textarea>
   <br>
   <input type="submit" value="Submit" id="edit_submit">
-  <br>
   </form>
 {% if user.username == author %}
-<button class="black_button" id="edit_post_button">Edit Post</button>
+<div class="author_buttons">
+  <button class="black_button" id="edit_post_button">Edit Post</button>
+  <form action="delete/{{ post.id }}" method="POST">
+  {% csrf_token %}
+   <input type="submit" class="delete_button" value="Delete">
+  </form> 
+</div>
+{% else %}
+<form action="favorites/{{ post.id }}" method="POST">
+  {% csrf_token %}
+     <input type="submit" value="Add to favorites">
+    </form>
 {% endif %}
+<br>
+<button class="black_button" id="dl_button">Download article</button>
 </div>
     <script src="{% static 'PerspectiveCub/view_post.js' %}" ></script>
 {% endblock %}

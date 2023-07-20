@@ -1,0 +1,26 @@
+#a_post{
+  margin:20px;
+  padding:10px;
+  height:200px;
+  overflow:hidden;
+  border: 2px solid gray;
+  white-space: nowrap;
+  border-radius:20px;
+  text-overflow:ellipsis;
+}
+#view_post{
+  color: black;
+  text-decoration:none; 
+}
+#a_post:hover{
+  border:2px solid blue;
+  box-shadow:10px 10px 5px black;
+}
+#create_post_button{
+  background-color:aquamarine;
+  color:black;
+  font-weight:bold;
+  position:relative;
+  left:10px;
+  font-size:24px;
+}

@@ -1,0 +1,21 @@
+{% extends 'PerspectiveCub/layout.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'PerspectiveCub/index_styles.css' %}"> 
+{% endblock %}
+{% block body %}
+{% if user.is_authenticated %}
+  <div id="show-posts">
+    {% for post in posts %}
+    <a id="view_post" href="{{ post.post.id }}">
+      <div id="a_post">
+        <h2 id="title">{{ post.post.title }}</h2>
+        <h3 id="name">{{ post.post.profile.user }}</h3>
+        <p id="date_time">{{ post.post.timestamp }}</p>
+        <p id="post_content">{{ post.post.content }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
