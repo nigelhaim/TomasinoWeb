@@ -12,4 +12,5 @@ urlpatterns = [
     path("delete/<int:post_id>", views.delete, name="delete"),
     path("favorites/<int:post_id>", views.add_favorites, name="favorites"),
     path("show_favorites", views.show_favorites, name="show_favorites"),
+    path("remove/<int:fav_id>", views.remove, name="remove"),
 ]

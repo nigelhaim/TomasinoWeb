@@ -7,14 +7,22 @@
 {% if user.is_authenticated %}
   <div id="show-posts">
     {% for post in posts %}
-    <a id="view_post" href="{{ post.post.id }}">
+    <div class="outer">
       <div id="a_post">
+    <a id="view_post" href="{{ post.post.id }}">
         <h2 id="title">{{ post.post.title }}</h2>
         <h3 id="name">{{ post.post.profile.user }}</h3>
         <p id="date_time">{{ post.post.timestamp }}</p>
         <p id="post_content">{{ post.post.content }}</p>
-      </div>
+        <br>
+
     </a>
+      </div>
+        <form action="remove/{{ post.id }}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="Remove from favorites" class="remove_button">
+        </form>
+    </div>
     {% endfor %}
   </div>
 {% endif %}

@@ -113,10 +113,15 @@ def add_favorites(request, post_id):
     dup = favorites.objects.filter(saver = saver, post = post).first()
     if dup == None:
         favorite.save()
-    return HttpResponseRedirect(reverse('view_post', args=(post.id,))) 
+    return HttpResponseRedirect(reverse('show_favorites')) 
 
 def show_favorites(request):
     post = favorites.objects.filter(saver = request.user)
     return render(request, "PerspectiveCub/favorites.html", {
         "posts" : post
         })
+
+def remove(request, fav_id):
+    fav = favorites.objects.get(pk=fav_id)
+    fav.delete()
+    return HttpResponseRedirect(reverse('show_favorites'))

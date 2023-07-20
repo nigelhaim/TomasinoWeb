@@ -37,3 +37,12 @@
   left:10px;
   font-size:24px;
 }
+.remove_button{
+  position:relative;
+  left:25px;
+}
+.outer{
+  border:5px solid gray;
+  padding:5px;
+  padding-bottom:20px;
+}
