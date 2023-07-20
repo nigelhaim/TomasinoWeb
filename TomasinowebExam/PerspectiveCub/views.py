@@ -83,3 +83,17 @@ def view_post(request, post_id):
         "timestamp" : v_post.timestamp.strftime("%b %d %Y, %I:%M %p"),
         "author" : author.username
         })
+
+def edit_post(request, post_id):
+    title = request.POST["edit_title"]
+    content = request.POST["edit_content"]
+    if request.method == "POST":
+        post = posts.objects.filter(id = post_id).first()
+        if post.profile.user != request.user:
+            return HttpResponse(status-401)
+        else:
+            post.title = title
+            post.content = content
+            post.save()
+            return HttpResponseRedirect(reverse('view_post', args=(post.id,))) 
+        

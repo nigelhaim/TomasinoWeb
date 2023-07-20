@@ -11,4 +11,19 @@ body{
   border-radius:5px;
   position:relative;
 }
+#edit_form_title{
+  height:48px;
+  padding:5px;
+  width:95%;
+  font-size:32px;
+  font-weight:500;
+  border:2px solid black;
+  border-radius:5px;
 
+}
+#edit_form_content{
+  width:95%;
+  height:60vh;
+  border-radius:5px;
+  border: 2px solid black;
+}

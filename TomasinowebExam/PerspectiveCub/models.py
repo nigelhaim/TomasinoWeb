@@ -16,7 +16,7 @@ class Profile(models.Model):
 class posts(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="Profile", default="")
     title = models.CharField(max_length=30)
-    content = models.CharField(max_length=500)
+    content = models.TextField()
     timestamp = models.DateTimeField()
 
     def serialize(self):
